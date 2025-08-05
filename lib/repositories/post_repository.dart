@@ -1,6 +1,5 @@
-import '../api/generated/lib/src/api/posts_api.dart';
-import '../api/generated/lib/src/model/post.dart';
-import '../core/api/api_client.dart';
+import 'package:api_client/api_client.dart';
+import '../core/api/api_client.dart' as core_api_client;
 import '../core/api/base_repository.dart';
 
 abstract class IPostRepository {
@@ -12,7 +11,7 @@ class PostRepository extends BaseRepository implements IPostRepository {
   late final PostsApi _postsApi;
   
   PostRepository() {
-    _postsApi = PostsApi(ApiClient().client);
+    _postsApi = PostsApi(core_api_client.ApiClient().client.dio, core_api_client.ApiClient().client.serializers);
   }
   
   @override

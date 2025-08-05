@@ -25,7 +25,7 @@ extension ColorExtensions on Color {
   }
 
   Color withOpacity(double opacity) {
-    return Color.fromRGBO(red, green, blue, opacity);
+    return Color.fromRGBO((r * 255.0).round() & 0xff, (g * 255.0).round() & 0xff, (b * 255.0).round() & 0xff, opacity);
   }
 
   Color lighten([double amount = 0.1]) {

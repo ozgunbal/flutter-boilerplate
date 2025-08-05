@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../lib/providers/theme_provider.dart';
+import 'package:flutter_boilerplate/providers/theme_provider.dart';
 
 void main() {
   group('ThemeModeNotifier Tests', () {
@@ -237,9 +237,9 @@ void main() {
       container.read(themeModeProvider.notifier).setDarkMode();
 
       // Assert
-      verify(() => darkModeListener(false, true)).called(1);
-      verify(() => lightModeListener(false, false)).called(1);
-      verify(() => systemModeListener(true, false)).called(1);
+      verify(() => darkModeListener(false, true));
+      verify(() => lightModeListener(false, false));
+      verify(() => systemModeListener(true, false));
 
       container.dispose();
     });

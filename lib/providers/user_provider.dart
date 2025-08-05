@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../api/generated/lib/src/model/user.dart';
-import '../api/generated/lib/src/model/create_user_request.dart';
+import 'package:api_client/api_client.dart';
 import '../repositories/user_repository.dart';
 import '../core/api/api_exception.dart';
 

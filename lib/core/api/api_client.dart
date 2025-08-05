@@ -1,26 +1,27 @@
 import 'package:dio/dio.dart';
-import '../../api/generated/lib/api_client.dart' as GeneratedApiClient;
+import 'package:flutter/foundation.dart';
+import 'package:api_client/api_client.dart' as generated_api_client;
 
 class ApiClient {
   static const String baseUrl = 'https://jsonplaceholder.typicode.com';
   
   late final Dio _dio;
-  late final GeneratedApiClient.ApiClient _apiClient;
+  late final generated_api_client.ApiClient _apiClient;
   
   ApiClient._internal() {
     _dio = Dio();
     _configureInterceptors();
     
-    _apiClient = GeneratedApiClient.ApiClient(
+    _apiClient = generated_api_client.ApiClient(
       dio: _dio,
-      basePath: baseUrl,
+      basePathOverride: baseUrl,
     );
   }
   
   static final ApiClient _instance = ApiClient._internal();
   factory ApiClient() => _instance;
   
-  GeneratedApiClient.ApiClient get client => _apiClient;
+  generated_api_client.ApiClient get client => _apiClient;
   
   void _configureInterceptors() {
     // Request/Response logging
@@ -33,7 +34,7 @@ class ApiClient {
         error: true,
         logPrint: (object) {
           // You can customize logging here
-          print('[API] $object');
+          debugPrint('[API] $object');
         },
       ),
     );

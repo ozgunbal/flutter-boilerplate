@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static const Color _primaryColor = Color(0xFF6366F1);
-  static const Color _primaryVariant = Color(0xFF4F46E5);
   static const Color _secondaryColor = Color(0xFF10B981);
-  static const Color _secondaryVariant = Color(0xFF059669);
   static const Color _errorColor = Color(0xFFEF4444);
-  static const Color _warningColor = Color(0xFFF59E0B);
   static const Color _surfaceColor = Color(0xFFFAFAFA);
-  static const Color _backgroundColor = Color(0xFFFFFFFF);
   static const Color _onPrimaryColor = Color(0xFFFFFFFF);
   static const Color _onSecondaryColor = Color(0xFFFFFFFF);
   static const Color _onSurfaceColor = Color(0xFF1F2937);
-  static const Color _onBackgroundColor = Color(0xFF1F2937);
   static const Color _onErrorColor = Color(0xFFFFFFFF);
 
   static ColorScheme get lightColorScheme => const ColorScheme(
@@ -129,7 +124,7 @@ class AppTheme {
         errorStyle: TextStyle(color: lightColorScheme.error),
       ),
       
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: lightColorScheme.surface,
         shadowColor: lightColorScheme.shadow,
         elevation: 1,
@@ -245,7 +240,7 @@ class AppTheme {
         errorStyle: TextStyle(color: darkColorScheme.error),
       ),
       
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: darkColorScheme.surface,
         shadowColor: darkColorScheme.shadow,
         elevation: 1,

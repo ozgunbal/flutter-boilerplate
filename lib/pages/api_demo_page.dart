@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
-import '../providers/user_provider.dart';
-import '../providers/post_provider.dart';
-import '../api/generated/lib/src/model/user.dart';
-import '../api/generated/lib/src/model/post.dart';
+import 'package:flutter_boilerplate/providers/user_provider.dart';
+import 'package:flutter_boilerplate/providers/post_provider.dart';
+import 'package:api_client/src/model/user.dart';
+import 'package:api_client/src/model/post.dart';
 
 class ApiDemoPage extends ConsumerStatefulWidget {
   const ApiDemoPage({super.key});
@@ -59,8 +58,8 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.go('/'),
-        child: const Icon(Icons.home),
         tooltip: 'Back to Home',
+        child: const Icon(Icons.home),
       ),
     );
   }
@@ -189,7 +188,7 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
                 CircleAvatar(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                   child: Text(
-                    user.name?.substring(0, 1).toUpperCase() ?? '?',
+                    user.name.substring(0, 1).toUpperCase(),
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
@@ -202,14 +201,14 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user.name ?? 'Unknown',
+                        user.name,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      if (user.email != null)
+                      // Email is always non-null
                         Text(
-                          user.email!,
+                          user.email,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
@@ -224,7 +223,7 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
                       _selectedUserId = user.id;
                     });
                     _tabController.animateTo(1);
-                    ref.read(postsProvider.notifier).fetchPostsByUserId(user.id!);
+                    ref.read(postsProvider.notifier).fetchPostsByUserId(user.id);
                   },
                   tooltip: 'View Posts',
                 ),
@@ -326,7 +325,7 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
                 Expanded(
                   child: Text(
                     _selectedUserId != null
-                        ? 'Posts by User ${_selectedUserId} (${postsState.posts.length})'
+                        ? 'Posts by User $_selectedUserId (${postsState.posts.length})'
                         : 'All Posts (${postsState.posts.length})',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
@@ -426,7 +425,7 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: Text(
-                    'ID: ${post.id}',
+                    'ID: $post.id',
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -442,7 +441,7 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: Text(
-                    'User: ${post.userId}',
+                    'User: $post.userId',
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: Theme.of(context).colorScheme.onSecondaryContainer,
@@ -454,14 +453,14 @@ class _ApiDemoPageState extends ConsumerState<ApiDemoPage>
             ),
             SizedBox(height: 12.h),
             Text(
-              post.title ?? 'Untitled',
+              post.title,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
             SizedBox(height: 8.h),
             Text(
-              post.body ?? 'No content',
+              post.body,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../api/generated/lib/src/model/post.dart';
+import 'package:api_client/api_client.dart';
 import '../repositories/post_repository.dart';
 import '../core/api/api_exception.dart';
 

@@ -149,10 +149,10 @@ class FormPage extends StatelessWidget {
                   value: 'other',
                   title: Text('form.gender.other'.tr()),
                 ),
-                ReactiveFormField<String>(
+                ReactiveFormField<String, String>(
                   formControlName: 'gender',
                   builder: (field) {
-                    return field.hasError
+                    return field.control.hasErrors
                         ? Padding(
                             padding: EdgeInsets.only(left: 16.w, top: 4.h),
                             child: Text(
@@ -173,10 +173,10 @@ class FormPage extends StatelessWidget {
                   title: Text('form.terms'.tr()),
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
-                ReactiveFormField<bool>(
+                ReactiveFormField<bool, bool>(
                   formControlName: 'terms',
                   builder: (field) {
-                    return field.hasError
+                    return field.control.hasErrors
                         ? Padding(
                             padding: EdgeInsets.only(left: 16.w, top: 4.h),
                             child: Text(

@@ -3,21 +3,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../lib/pages/home_page.dart';
-import '../../lib/theme/app_theme.dart';
-import '../../lib/providers/theme_provider.dart';
+import 'package:flutter_boilerplate/pages/home_page.dart';
+import 'package:flutter_boilerplate/theme/app_theme.dart';
+import 'package:flutter_boilerplate/providers/theme_provider.dart';
 
 // Mock GoRouter for testing navigation
-class MockGoRouter extends GoRouter {
-  MockGoRouter() : super(routes: []);
-  
+class MockGoRouter {
   String? lastPushedRoute;
+  Map<String, dynamic>? lastExtra;
   
-  @override
   void go(String location, {Object? extra}) {
     lastPushedRoute = location;
+    lastExtra = extra as Map<String, dynamic>?;
+  }
+  
+  Future<T?> push<T extends Object?>(String location, {Object? extra}) async {
+    lastPushedRoute = location;
+    lastExtra = extra as Map<String, dynamic>?;
+    return null;
+  }
+  
+  void reset() {
+    lastPushedRoute = null;
+    lastExtra = null;
   }
 }
 
@@ -56,12 +65,7 @@ class TestWrapper extends StatelessWidget {
                   localizationsDelegates: context.localizationDelegates,
                   supportedLocales: context.supportedLocales,
                   locale: context.locale,
-                  home: router != null 
-                    ? InheritedGoRouter(
-                        goRouter: router!,
-                        child: child,
-                      )
-                    : child,
+                  home: child,
                 );
               },
             ),

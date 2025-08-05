@@ -2,27 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_test/flutter_test.dart';
 
-import '../../lib/theme/app_theme.dart';
+import 'package:flutter_boilerplate/theme/app_theme.dart';
 
 // Mock GoRouter for testing navigation
-class MockGoRouter extends GoRouter {
-  MockGoRouter() : super(routes: []);
-  
+class MockGoRouter {
   String? lastPushedRoute;
   Map<String, dynamic>? lastExtra;
   
-  @override
   void go(String location, {Object? extra}) {
     lastPushedRoute = location;
     lastExtra = extra as Map<String, dynamic>?;
   }
   
-  @override
-  void push(String location, {Object? extra}) {
+  Future<T?> push<T extends Object?>(String location, {Object? extra}) async {
     lastPushedRoute = location;
     lastExtra = extra as Map<String, dynamic>?;
+    return null;
   }
   
   void reset() {
@@ -75,12 +72,7 @@ class TestWrapper extends StatelessWidget {
                   localizationsDelegates: context.localizationDelegates,
                   supportedLocales: context.supportedLocales,
                   locale: context.locale,
-                  home: router != null 
-                    ? InheritedGoRouter(
-                        goRouter: router!,
-                        child: child,
-                      )
-                    : child,
+                  home: child,
                 );
               },
             ),
@@ -128,18 +120,24 @@ class TestUtils {
   
   // Find button by text with case-insensitive matching
   static Finder findButtonByText(String text) {
-    return find.widgetWithText(ElevatedButton, text)
-        .or(find.widgetWithText(OutlinedButton, text))
-        .or(find.widgetWithText(TextButton, text));
+    final elevatedButton = find.widgetWithText(ElevatedButton, text);
+    final outlinedButton = find.widgetWithText(OutlinedButton, text);
+    final textButton = find.widgetWithText(TextButton, text);
+    
+    if (elevatedButton.evaluate().isNotEmpty) return elevatedButton;
+    if (outlinedButton.evaluate().isNotEmpty) return outlinedButton;
+    return textButton;
   }
   
   // Find text field by label
   static Finder findTextFieldByLabel(String label) {
-    return find.widgetWithText(TextFormField, label)
-        .or(find.ancestor(
-          of: find.text(label),
-          matching: find.byType(TextFormField),
-        ));
+    final directMatch = find.widgetWithText(TextFormField, label);
+    if (directMatch.evaluate().isNotEmpty) return directMatch;
+    
+    return find.ancestor(
+      of: find.text(label),
+      matching: find.byType(TextFormField),
+    );
   }
   
   // Enter text in field with label

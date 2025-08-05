@@ -1,8 +1,5 @@
-import '../api/generated/lib/src/api/users_api.dart';
-import '../api/generated/lib/src/model/user.dart';
-import '../api/generated/lib/src/model/create_user_request.dart';
-import '../api/generated/lib/src/model/update_user_request.dart';
-import '../core/api/api_client.dart';
+import 'package:api_client/api_client.dart';
+import '../core/api/api_client.dart' as core_api_client;
 import '../core/api/base_repository.dart';
 
 abstract class IUserRepository {
@@ -17,7 +14,7 @@ class UserRepository extends BaseRepository implements IUserRepository {
   late final UsersApi _usersApi;
   
   UserRepository() {
-    _usersApi = UsersApi(ApiClient().client);
+    _usersApi = UsersApi(core_api_client.ApiClient().client.dio, core_api_client.ApiClient().client.serializers);
   }
   
   @override
@@ -31,7 +28,7 @@ class UserRepository extends BaseRepository implements IUserRepository {
   @override
   Future<User?> getUserById(int id) async {
     return handleApiCall(() async {
-      final response = await _usersApi.getUserById(id);
+      final response = await _usersApi.getUserById(id: id);
       return extractData<User>(response);
     });
   }
@@ -48,7 +45,7 @@ class UserRepository extends BaseRepository implements IUserRepository {
   Future<User?> updateUser(int id, UpdateUserRequest request) async {
     return handleApiCall(() async {
       final response = await _usersApi.updateUser(
-        id, 
+        id: id, 
         updateUserRequest: request,
       );
       return extractData<User>(response);
@@ -58,7 +55,7 @@ class UserRepository extends BaseRepository implements IUserRepository {
   @override
   Future<void> deleteUser(int id) async {
     return handleApiCall(() async {
-      await _usersApi.deleteUser(id);
+      await _usersApi.deleteUser(id: id);
     });
   }
 }

@@ -9,7 +9,6 @@ import 'package:dio/dio.dart';
 
 import 'package:api_client/src/api_util.dart';
 import 'package:api_client/src/model/create_user_request.dart';
-import 'package:api_client/src/model/error.dart';
 import 'package:api_client/src/model/update_user_request.dart';
 import 'package:api_client/src/model/user.dart';
 import 'package:built_collection/built_collection.dart';

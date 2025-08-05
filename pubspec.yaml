@@ -43,9 +43,15 @@ dependencies:
   json_annotation: ^4.9.0
   build_runner: ^2.6.0
   json_serializable: ^6.10.0
+  
+  # Generated API client
+  api_client:
+    path: lib/api/generated
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to

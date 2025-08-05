@@ -31,7 +31,7 @@ class ApiException implements Exception {
         if (responseData is Map<String, dynamic>) {
           message = responseData['message'] ?? 'Server error';
         } else {
-          message = 'Server error (${statusCode})';
+          message = 'Server error ($statusCode)';
         }
         
         return ApiException(
