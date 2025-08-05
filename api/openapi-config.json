@@ -1,0 +1,20 @@
+{
+  "pubName": "api_client",
+  "pubVersion": "1.0.0",
+  "pubDescription": "Generated API client for Example API",
+  "pubAuthor": "Flutter Boilerplate",
+  "pubAuthorEmail": "developer@example.com",
+  "pubHomepage": "https://github.com/example/flutter_boilerplate",
+  "useEnumExtension": true,
+  "enumUnknownDefaultCase": true,
+  "serializationLibrary": "built_value",
+  "dateLibrary": "core",
+  "nullableFields": true,
+  "wrapper": "none",
+  "legacyDiscriminatorBehavior": false,
+  "sortModelPropertiesByRequiredFlag": true,
+  "sortParamsByRequiredFlag": true,
+  "allowUnicodeIdentifiers": false,
+  "prependFormOrBodyParameters": false,
+  "hideGenerationTimestamp": true
+}

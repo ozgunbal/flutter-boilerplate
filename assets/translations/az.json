@@ -1,0 +1,48 @@
+{
+  "home": {
+    "title": "Ana Səhifə",
+    "welcome": "Ana Səhifəyə xoş gəlmisiniz!",
+    "go_to_details": "Təfərrüatlara keç",
+    "go_to_form": "Forma keç"
+  },
+  "details": {
+    "title": "Təfərrüatlar",
+    "message": "Bu təfərrüatlar səhifəsidir!",
+    "back_to_home": "Ana səhifəyə qayıt"
+  },
+  "form": {
+    "title": "Forma",
+    "name": "Ad",
+    "email": "Elektron poçt",
+    "age": "Yaş",
+    "country": "Ölkə",
+    "gender": "Cins",
+    "terms": "Mən şərtlər və qaydalarla razıyam",
+    "submit": "Göndər",
+    "back_to_home": "Ana səhifəyə qayıt",
+    "success": "Forma uğurla göndərildi!",
+    "countries": {
+      "us": "Amerika Birleşmiş Ştatları",
+      "uk": "Birleşmiş Krallıq",
+      "de": "Almaniya",
+      "fr": "Fransa",
+      "az": "Azərbaycan",
+      "ru": "Rusiya"
+    },
+    "gender": {
+      "male": "Kışı",
+      "female": "Qadın",
+      "other": "Diğər"
+    },
+    "validation": {
+      "required": "Bu sahə məcburidir",
+      "min_length": "Minimum uzunluq {0} simvoldur",
+      "max_length": "Maksimum uzunluq {0} simvoldur",
+      "invalid_email": "Düzgün elektron poçt ünvanı daxil edin",
+      "min_age": "Minimum yaş {0}",
+      "max_age": "Maksimum yaş {0}",
+      "terms_required": "Sərtlər və qaydalarla razılaşmalısınız",
+      "form_invalid": "Formadakı xetaları düzəldin"
+    }
+  }
+}

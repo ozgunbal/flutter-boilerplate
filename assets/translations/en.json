@@ -1,0 +1,48 @@
+{
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome to the Home Page!",
+    "go_to_details": "Go to Details",
+    "go_to_form": "Go to Form"
+  },
+  "details": {
+    "title": "Details",
+    "message": "This is the Details Page!",
+    "back_to_home": "Back to Home"
+  },
+  "form": {
+    "title": "Form",
+    "name": "Name",
+    "email": "Email",
+    "age": "Age",
+    "country": "Country",
+    "gender": "Gender",
+    "terms": "I agree to the terms and conditions",
+    "submit": "Submit",
+    "back_to_home": "Back to Home",
+    "success": "Form submitted successfully!",
+    "countries": {
+      "us": "United States",
+      "uk": "United Kingdom",
+      "de": "Germany",
+      "fr": "France",
+      "az": "Azerbaijan",
+      "ru": "Russia"
+    },
+    "gender": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "validation": {
+      "required": "This field is required",
+      "min_length": "Minimum length is {0} characters",
+      "max_length": "Maximum length is {0} characters",
+      "invalid_email": "Please enter a valid email address",
+      "min_age": "Minimum age is {0}",
+      "max_age": "Maximum age is {0}",
+      "terms_required": "You must agree to the terms and conditions",
+      "form_invalid": "Please fix the errors in the form"
+    }
+  }
+}
