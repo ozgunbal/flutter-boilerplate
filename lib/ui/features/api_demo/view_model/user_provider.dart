@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:api_client/api_client.dart';
-import '../repositories/user_repository.dart';
-import '../core/api/api_exception.dart';
+import '../../../../data/repositories/user_repository.dart';
+import '../../../../data/services/api_exception.dart';
 
 // Repository provider
 final userRepositoryProvider = Provider<IUserRepository>((ref) {

@@ -1,8 +1,8 @@
 import 'package:go_router/go_router.dart';
-import '../pages/home_page.dart';
-import '../pages/details_page.dart';
-import '../pages/form_page.dart';
-import '../pages/api_demo_page.dart';
+import '../../ui/features/home/home_page.dart';
+import '../../ui/features/details/details_page.dart';
+import '../../ui/features/form/form_page.dart';
+import '../../ui/features/api_demo/api_demo_page.dart';
 
 final GoRouter appRouter = GoRouter(
   routes: [

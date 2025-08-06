@@ -16,32 +16,54 @@ A comprehensive Flutter boilerplate project demonstrating modern app development
 
 ## 📁 Project Structure
 
+Following Flutter's official architecture guidelines with feature-based organization:
+
 ```
 lib/
-├── api/                        # API specifications and generated clients
-│   └── generated/              # Auto-generated API client from OpenAPI
-├── core/                       # Core functionality and utilities
-│   └── api/                    # Base API classes and error handling
-│       ├── api_client.dart     # Singleton API client with Dio
-│       ├── api_exception.dart  # Custom exception handling
-│       └── base_repository.dart # Abstract repository base class
-├── navigation/                 # App routing configuration
-│   └── app_router.dart         # Go Router setup and routes
-├── pages/                      # UI screens/pages
-│   ├── home_page.dart          # Home page with navigation
-│   ├── details_page.dart       # Details page
-│   ├── form_page.dart          # Reactive form demonstration
-│   └── api_demo_page.dart      # API integration demo
-├── providers/                  # Riverpod state management
-│   ├── theme_provider.dart     # Theme mode management
-│   ├── user_provider.dart      # User state management
-│   └── post_provider.dart      # Post state management
-├── repositories/               # Data layer with repository pattern
-│   ├── user_repository.dart    # User data operations
-│   └── post_repository.dart    # Post data operations
-└── theme/                      # App theming and styling
-    ├── app_theme.dart          # Theme configuration
-    └── theme_extensions.dart   # Theme utility extensions
+├── ui/                         # Presentation layer
+│   ├── core/                   # Shared UI components and theming
+│   │   ├── themes/             # App theming system
+│   │   │   ├── app_theme.dart          # Theme configuration
+│   │   │   ├── theme_extensions.dart   # Theme utilities
+│   │   │   └── theme_provider.dart     # Theme state management
+│   │   └── widgets/            # Reusable UI components
+│   └── features/               # Feature-based organization
+│       ├── home/               # Home feature
+│       │   ├── home_page.dart          # Home page widget
+│       │   ├── widgets/                # Home-specific widgets
+│       │   └── view_model/             # Home state management
+│       ├── details/            # Details feature
+│       │   ├── details_page.dart       # Details page widget
+│       │   ├── widgets/                # Details-specific widgets
+│       │   └── view_model/             # Details state management
+│       ├── form/               # Form feature
+│       │   ├── form_page.dart          # Reactive form demo
+│       │   ├── widgets/                # Form-specific widgets
+│       │   └── view_model/             # Form state management
+│       └── api_demo/           # API demo feature
+│           ├── api_demo_page.dart      # API integration demo
+│           ├── widgets/                # API demo widgets
+│           └── view_model/             # API demo state management
+│               ├── user_provider.dart  # User state management
+│               └── post_provider.dart  # Post state management
+├── data/                       # Data layer
+│   ├── repositories/           # Repository pattern implementation
+│   │   ├── user_repository.dart        # User data operations
+│   │   └── post_repository.dart        # Post data operations
+│   ├── services/               # API and external services
+│   │   ├── api_client.dart             # Singleton API client
+│   │   ├── api_exception.dart          # Exception handling
+│   │   └── base_repository.dart        # Repository base class
+│   └── models/                 # Data transfer objects
+├── domain/                     # Business logic layer
+│   └── models/                 # Domain entities
+├── config/                     # App configuration
+│   └── routing/                # Navigation configuration
+│       └── app_router.dart             # Go Router setup
+├── utils/                      # Utility functions
+├── api/                        # API specifications
+│   └── generated/              # Auto-generated API client
+└── main.dart                   # App entry point
 
 test/                           # Test suite
 ├── integration/                # Integration tests
@@ -134,14 +156,35 @@ scripts/
 
 ## 🏗 Architecture Overview
 
-### Repository Pattern
-The app implements the Repository pattern to separate data logic from business logic:
+Based on Flutter's official architecture guidelines, the project implements a layered architecture with feature-based organization:
 
+### Architecture Layers
+
+#### 1. **UI Layer** (`lib/ui/`)
+- **Core Components** (`ui/core/`): Shared widgets, themes, and global UI state
+- **Features** (`ui/features/`): Feature-specific UI components and view models
+- Each feature contains: page widgets, feature-specific widgets, and view models
+
+#### 2. **Data Layer** (`lib/data/`)
+- **Repositories**: Implement the Repository pattern for data access
+- **Services**: API clients, external service integrations
+- **Models**: Data transfer objects and API response models
+
+#### 3. **Domain Layer** (`lib/domain/`)
+- **Models**: Business entities and domain-specific models
+- **Business Logic**: Domain rules and use cases (when needed)
+
+#### 4. **Configuration** (`lib/config/`)
+- **Routing**: Navigation setup and route definitions
+- **Environment**: App configuration and environment variables
+
+### Key Patterns
+
+#### Repository Pattern
 ```dart
 abstract class IUserRepository {
   Future<List<User>> getUsers();
   Future<User?> getUserById(int id);
-  // ... other methods
 }
 
 class UserRepository extends BaseRepository implements IUserRepository {
@@ -149,20 +192,20 @@ class UserRepository extends BaseRepository implements IUserRepository {
 }
 ```
 
-### MVVM with Riverpod
-View Models are implemented as Riverpod providers:
-
+#### Feature-based MVVM
 ```dart
+// Feature view model
 final usersProvider = StateNotifierProvider<UsersNotifier, UsersState>((ref) {
   final repository = ref.watch(userRepositoryProvider);
   return UsersNotifier(repository);
 });
 ```
 
-### State Management
-- **Theme Management**: Global theme state with system/light/dark modes
-- **Form State**: Reactive forms with real-time validation
-- **API State**: Loading, error, and success states for API calls
+#### Layer Separation
+- **UI Layer**: Only UI components and view models (no business logic)
+- **Data Layer**: Data access, API calls, and caching
+- **Domain Layer**: Business rules and entities
+- **Config Layer**: App-wide configuration and setup
 
 ## 🌍 Internationalization
 

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/theme_provider.dart';
+import '../../core/themes/theme_provider.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});

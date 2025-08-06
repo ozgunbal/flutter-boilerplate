@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-import 'package:flutter_boilerplate/pages/form_page.dart';
-import 'package:flutter_boilerplate/theme/app_theme.dart';
+import 'package:flutter_boilerplate/ui/features/form/form_page.dart';
+import 'package:flutter_boilerplate/ui/core/themes/app_theme.dart';
 
 // Mock GoRouter for testing navigation
 class MockGoRouter {

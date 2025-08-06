@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'navigation/app_router.dart';
-import 'theme/app_theme.dart';
-import 'providers/theme_provider.dart';
+import 'config/routing/app_router.dart';
+import 'ui/core/themes/app_theme.dart';
+import 'ui/core/themes/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

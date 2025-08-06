@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-import 'package:flutter_boilerplate/pages/home_page.dart';
-import 'package:flutter_boilerplate/theme/app_theme.dart';
-import 'package:flutter_boilerplate/providers/theme_provider.dart';
+import 'package:flutter_boilerplate/ui/features/home/home_page.dart';
+import 'package:flutter_boilerplate/ui/core/themes/app_theme.dart';
+import 'package:flutter_boilerplate/ui/core/themes/theme_provider.dart';
 
 // Mock GoRouter for testing navigation
 class MockGoRouter {

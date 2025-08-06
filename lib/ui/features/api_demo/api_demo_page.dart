@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_boilerplate/providers/user_provider.dart';
-import 'package:flutter_boilerplate/providers/post_provider.dart';
+import 'view_model/user_provider.dart';
+import 'view_model/post_provider.dart';
 import 'package:api_client/src/model/user.dart';
 import 'package:api_client/src/model/post.dart';
 

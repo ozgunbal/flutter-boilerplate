@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:flutter_boilerplate/providers/theme_provider.dart';
+import 'package:flutter_boilerplate/ui/core/themes/theme_provider.dart';
 
 void main() {
   group('ThemeModeNotifier Tests', () {

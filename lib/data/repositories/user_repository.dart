@@ -1,6 +1,6 @@
 import 'package:api_client/api_client.dart';
-import '../core/api/api_client.dart' as core_api_client;
-import '../core/api/base_repository.dart';
+import '../services/api_client.dart' as core_api_client;
+import '../services/base_repository.dart';
 
 abstract class IUserRepository {
   Future<List<User>> getUsers();
