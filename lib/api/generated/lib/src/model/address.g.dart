@@ -22,7 +22,7 @@ class _$Address extends Address {
       (AddressBuilder()..update(updates))._build();
 
   _$Address._({this.street, this.suite, this.city, this.zipcode, this.geo})
-      : super._();
+    : super._();
   @override
   Address rebuild(void Function(AddressBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -121,7 +121,8 @@ class AddressBuilder implements Builder<Address, AddressBuilder> {
   _$Address _build() {
     _$Address _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           _$Address._(
             street: street,
             suite: suite,
@@ -136,7 +137,10 @@ class AddressBuilder implements Builder<Address, AddressBuilder> {
         _geo?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-            r'Address', _$failedField, e.toString());
+          r'Address',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

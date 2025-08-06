@@ -20,6 +20,8 @@ void main() async {
         ],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
+        useOnlyLangCode: true,
+        useFallbackTranslations: true,
         child: const MyApp(),
       ),
     ),

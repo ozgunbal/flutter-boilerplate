@@ -16,7 +16,7 @@
     "email": "Email",
     "age": "Age",
     "country": "Country",
-    "gender": "Gender",
+    "gender_label": "Gender",
     "terms": "I agree to the terms and conditions",
     "submit": "Submit",
     "back_to_home": "Back to Home",

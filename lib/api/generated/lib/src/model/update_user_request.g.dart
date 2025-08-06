@@ -18,13 +18,17 @@ class _$UpdateUserRequest extends UpdateUserRequest {
   @override
   final String? website;
 
-  factory _$UpdateUserRequest(
-          [void Function(UpdateUserRequestBuilder)? updates]) =>
-      (UpdateUserRequestBuilder()..update(updates))._build();
+  factory _$UpdateUserRequest([
+    void Function(UpdateUserRequestBuilder)? updates,
+  ]) => (UpdateUserRequestBuilder()..update(updates))._build();
 
-  _$UpdateUserRequest._(
-      {this.name, this.username, this.email, this.phone, this.website})
-      : super._();
+  _$UpdateUserRequest._({
+    this.name,
+    this.username,
+    this.email,
+    this.phone,
+    this.website,
+  }) : super._();
   @override
   UpdateUserRequest rebuild(void Function(UpdateUserRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -123,7 +127,8 @@ class UpdateUserRequestBuilder
   UpdateUserRequest build() => _build();
 
   _$UpdateUserRequest _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         _$UpdateUserRequest._(
           name: name,
           username: username,

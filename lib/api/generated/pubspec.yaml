@@ -4,7 +4,7 @@ description: Generated API client for Example API
 homepage: https://github.com/example/flutter_boilerplate
 
 environment:
-  sdk: '>=2.15.0 <3.0.0'
+  sdk: ^3.8.1
 
 dependencies:
   dio: '^5.2.0'

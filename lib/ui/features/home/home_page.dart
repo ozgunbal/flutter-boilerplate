@@ -4,16 +4,30 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/themes/theme_provider.dart';
+import '../../core/widgets/language_selector.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // This will trigger a rebuild when EasyLocalization context changes
+    debugPrint('🔄 HomePage didChangeDependencies - Locale: ${context.locale}');
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('home.title'.tr()),
         actions: [
+          const LanguageSelector(),
           IconButton(
             onPressed: () {
               ref.read(themeModeProvider.notifier).toggleTheme();

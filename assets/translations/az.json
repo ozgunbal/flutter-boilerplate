@@ -16,7 +16,7 @@
     "email": "Elektron poçt",
     "age": "Yaş",
     "country": "Ölkə",
-    "gender": "Cins",
+    "gender_label": "Cins",
     "terms": "Mən şərtlər və qaydalarla razıyam",
     "submit": "Göndər",
     "back_to_home": "Ana səhifəyə qayıt",

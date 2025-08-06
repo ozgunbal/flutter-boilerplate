@@ -18,7 +18,7 @@ class _$Error extends Error {
       (ErrorBuilder()..update(updates))._build();
 
   _$Error._({required this.code, required this.message, this.details})
-      : super._();
+    : super._();
   @override
   Error rebuild(void Function(ErrorBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -99,11 +99,15 @@ class ErrorBuilder implements Builder<Error, ErrorBuilder> {
   Error build() => _build();
 
   _$Error _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         _$Error._(
           code: BuiltValueNullFieldError.checkNotNull(code, r'Error', 'code'),
           message: BuiltValueNullFieldError.checkNotNull(
-              message, r'Error', 'message'),
+            message,
+            r'Error',
+            'message',
+          ),
           details: details,
         );
     replace(_$result);

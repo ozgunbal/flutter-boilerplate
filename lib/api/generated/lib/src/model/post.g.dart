@@ -21,13 +21,13 @@ class _$Post extends Post {
   factory _$Post([void Function(PostBuilder)? updates]) =>
       (PostBuilder()..update(updates))._build();
 
-  _$Post._(
-      {required this.id,
-      required this.title,
-      required this.body,
-      required this.userId,
-      this.createdAt})
-      : super._();
+  _$Post._({
+    required this.id,
+    required this.title,
+    required this.body,
+    required this.userId,
+    this.createdAt,
+  }) : super._();
   @override
   Post rebuild(void Function(PostBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -124,13 +124,17 @@ class PostBuilder implements Builder<Post, PostBuilder> {
   Post build() => _build();
 
   _$Post _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         _$Post._(
           id: BuiltValueNullFieldError.checkNotNull(id, r'Post', 'id'),
           title: BuiltValueNullFieldError.checkNotNull(title, r'Post', 'title'),
           body: BuiltValueNullFieldError.checkNotNull(body, r'Post', 'body'),
-          userId:
-              BuiltValueNullFieldError.checkNotNull(userId, r'Post', 'userId'),
+          userId: BuiltValueNullFieldError.checkNotNull(
+            userId,
+            r'Post',
+            'userId',
+          ),
           createdAt: createdAt,
         );
     replace(_$result);

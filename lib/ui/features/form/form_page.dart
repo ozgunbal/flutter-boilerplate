@@ -128,7 +128,7 @@ class FormPage extends StatelessWidget {
                 SizedBox(height: 16.h),
                 
                 Text(
-                  'form.gender'.tr(),
+                  'form.gender_label'.tr(),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontSize: 16.sp,
                   ),

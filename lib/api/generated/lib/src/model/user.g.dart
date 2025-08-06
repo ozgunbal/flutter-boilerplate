@@ -31,18 +31,18 @@ class _$User extends User {
   factory _$User([void Function(UserBuilder)? updates]) =>
       (UserBuilder()..update(updates))._build();
 
-  _$User._(
-      {required this.id,
-      required this.name,
-      required this.email,
-      this.username,
-      this.phone,
-      this.website,
-      this.address,
-      this.company,
-      this.createdAt,
-      this.updatedAt})
-      : super._();
+  _$User._({
+    required this.id,
+    required this.name,
+    required this.email,
+    this.username,
+    this.phone,
+    this.website,
+    this.address,
+    this.company,
+    this.createdAt,
+    this.updatedAt,
+  }) : super._();
   @override
   User rebuild(void Function(UserBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -181,12 +181,16 @@ class UserBuilder implements Builder<User, UserBuilder> {
   _$User _build() {
     _$User _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           _$User._(
             id: BuiltValueNullFieldError.checkNotNull(id, r'User', 'id'),
             name: BuiltValueNullFieldError.checkNotNull(name, r'User', 'name'),
-            email:
-                BuiltValueNullFieldError.checkNotNull(email, r'User', 'email'),
+            email: BuiltValueNullFieldError.checkNotNull(
+              email,
+              r'User',
+              'email',
+            ),
             username: username,
             phone: phone,
             website: website,

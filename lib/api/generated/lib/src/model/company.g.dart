@@ -98,12 +98,8 @@ class CompanyBuilder implements Builder<Company, CompanyBuilder> {
   Company build() => _build();
 
   _$Company _build() {
-    final _$result = _$v ??
-        _$Company._(
-          name: name,
-          catchPhrase: catchPhrase,
-          bs: bs,
-        );
+    final _$result =
+        _$v ?? _$Company._(name: name, catchPhrase: catchPhrase, bs: bs);
     replace(_$result);
     return _$result;
   }

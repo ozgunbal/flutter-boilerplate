@@ -86,11 +86,7 @@ class CoordinatesBuilder implements Builder<Coordinates, CoordinatesBuilder> {
   Coordinates build() => _build();
 
   _$Coordinates _build() {
-    final _$result = _$v ??
-        _$Coordinates._(
-          lat: lat,
-          lng: lng,
-        );
+    final _$result = _$v ?? _$Coordinates._(lat: lat, lng: lng);
     replace(_$result);
     return _$result;
   }

@@ -18,17 +18,17 @@ class _$CreateUserRequest extends CreateUserRequest {
   @override
   final String? website;
 
-  factory _$CreateUserRequest(
-          [void Function(CreateUserRequestBuilder)? updates]) =>
-      (CreateUserRequestBuilder()..update(updates))._build();
+  factory _$CreateUserRequest([
+    void Function(CreateUserRequestBuilder)? updates,
+  ]) => (CreateUserRequestBuilder()..update(updates))._build();
 
-  _$CreateUserRequest._(
-      {required this.name,
-      required this.email,
-      this.username,
-      this.phone,
-      this.website})
-      : super._();
+  _$CreateUserRequest._({
+    required this.name,
+    required this.email,
+    this.username,
+    this.phone,
+    this.website,
+  }) : super._();
   @override
   CreateUserRequest rebuild(void Function(CreateUserRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -127,12 +127,19 @@ class CreateUserRequestBuilder
   CreateUserRequest build() => _build();
 
   _$CreateUserRequest _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         _$CreateUserRequest._(
           name: BuiltValueNullFieldError.checkNotNull(
-              name, r'CreateUserRequest', 'name'),
+            name,
+            r'CreateUserRequest',
+            'name',
+          ),
           email: BuiltValueNullFieldError.checkNotNull(
-              email, r'CreateUserRequest', 'email'),
+            email,
+            r'CreateUserRequest',
+            'email',
+          ),
           username: username,
           phone: phone,
           website: website,
