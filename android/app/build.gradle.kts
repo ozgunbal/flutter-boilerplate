@@ -29,6 +29,34 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+    flavorDimensions += "app"
+
+
+    productFlavors {
+        create("dev") {
+            dimension = "app"
+            applicationId = "com.example.flutter_boilerplate.dev"
+            versionCode = flutter.versionCode
+            versionName = flutter.versionName
+            resValue("string", "app_name", "MyApp Dev")
+        }
+
+        create("staging") {
+            dimension = "app"
+            applicationId = "com.example.flutter_boilerplate.staging"
+            versionCode = flutter.versionCode
+            versionName = flutter.versionName
+            resValue("string", "app_name", "MyApp Staging")
+        }
+
+        create("prod") {
+            dimension = "app"
+            applicationId = "com.example.flutter_boilerplate"
+            versionCode = flutter.versionCode
+            versionName = flutter.versionName
+            resValue("string", "app_name", "MyApp")
+        }
+    }
 
     buildTypes {
         release {
