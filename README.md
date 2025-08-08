@@ -6,10 +6,11 @@ A comprehensive Flutter boilerplate project demonstrating modern app development
 
 - **Clean Architecture**: Repository pattern with MVVM architecture
 - **State Management**: Riverpod for reactive state management
-- **Internationalization**: Easy Localization with 3 languages (EN, RU, AZ)
+- **Multi-Flavor Support**: Development, Staging, and Production environments
+- **Type-Safe Internationalization**: Generated LocaleKeys with Easy Localization (EN, RU, AZ)
 - **Responsive Design**: Flutter ScreenUtil for adaptive layouts
 - **Custom Theming**: Material 3 design with light/dark mode support
-- **Navigation**: Go Router for declarative navigation
+- **Type-Safe Navigation**: Go Router with enum-based route definitions
 - **Form Handling**: Reactive Forms with comprehensive validation
 - **API Integration**: Auto-generated Dio client from OpenAPI specification
 - **Testing**: Comprehensive widget, unit, and integration tests
@@ -20,6 +21,11 @@ Following Flutter's official architecture guidelines with feature-based organiza
 
 ```
 lib/
+├── app/                        # App-level constants and configurations
+│   └── core/                   # Core app constants
+│       └── constants/          # App constants
+│           └── lang/           # Localization constants
+│               └── locale_keys.g.dart  # Generated localization keys
 ├── ui/                         # Presentation layer
 │   ├── core/                   # Shared UI components and theming
 │   │   ├── themes/             # App theming system
@@ -27,6 +33,7 @@ lib/
 │   │   │   ├── theme_extensions.dart   # Theme utilities
 │   │   │   └── theme_provider.dart     # Theme state management
 │   │   └── widgets/            # Reusable UI components
+│   │       └── language_selector.dart  # Language selection widget
 │   └── features/               # Feature-based organization
 │       ├── home/               # Home feature
 │       │   ├── home_page.dart          # Home page widget
@@ -34,12 +41,10 @@ lib/
 │       │   └── view_model/             # Home state management
 │       ├── details/            # Details feature
 │       │   ├── details_page.dart       # Details page widget
-│       │   ├── widgets/                # Details-specific widgets
-│       │   └── view_model/             # Details state management
+│       │   └── widgets/                # Details-specific widgets
 │       ├── form/               # Form feature
 │       │   ├── form_page.dart          # Reactive form demo
-│       │   ├── widgets/                # Form-specific widgets
-│       │   └── view_model/             # Form state management
+│       │   └── widgets/                # Form-specific widgets
 │       └── api_demo/           # API demo feature
 │           ├── api_demo_page.dart      # API integration demo
 │           ├── widgets/                # API demo widgets
@@ -50,20 +55,24 @@ lib/
 │   ├── repositories/           # Repository pattern implementation
 │   │   ├── user_repository.dart        # User data operations
 │   │   └── post_repository.dart        # Post data operations
-│   ├── services/               # API and external services
-│   │   ├── api_client.dart             # Singleton API client
-│   │   ├── api_exception.dart          # Exception handling
-│   │   └── base_repository.dart        # Repository base class
-│   └── models/                 # Data transfer objects
-├── domain/                     # Business logic layer
-│   └── models/                 # Domain entities
+│   └── services/               # API and external services
+│       ├── api_client.dart             # Singleton API client
+│       ├── api_exception.dart          # Exception handling
+│       └── base_repository.dart        # Repository base class
 ├── config/                     # App configuration
+│   ├── app/                    # App configuration
+│   │   ├── app_config.dart             # Main app configuration
+│   │   ├── flavor_config.dart          # Flavor configuration
+│   │   └── flavor_values.dart          # Flavor-specific values
 │   └── routing/                # Navigation configuration
-│       └── app_router.dart             # Go Router setup
-├── utils/                      # Utility functions
+│       ├── app_router.dart             # Go Router setup
+│       └── routes_name.dart            # Type-safe route definitions
 ├── api/                        # API specifications
 │   └── generated/              # Auto-generated API client
-└── main.dart                   # App entry point
+├── main.dart                   # Common application entry point
+├── dev_application.dart        # Development flavor entry point
+├── staging_application.dart    # Staging flavor entry point
+└── prod_application.dart       # Production flavor entry point
 
 test/                           # Test suite
 ├── integration/                # Integration tests
@@ -107,6 +116,64 @@ scripts/
 - **flutter_test**: Testing framework
 - **flutter_lints**: Comprehensive linting rules (45+ rules configured)
 - **integration_test**: Integration testing support
+
+## 🌟 New Features & Improvements
+
+### Multi-Flavor Support
+The project now supports multiple build flavors for different environments:
+
+- **Development** (`dev_application.dart`): Local development with debug features
+- **Staging** (`staging_application.dart`): Pre-production testing environment  
+- **Production** (`prod_application.dart`): Live production environment
+
+Each flavor can have different configurations, API endpoints, and feature flags.
+
+#### Running Different Flavors
+```bash
+# Development flavor (default)
+flutter run -t lib/dev_application.dart
+
+# Staging flavor
+flutter run -t lib/staging_application.dart
+
+# Production flavor  
+flutter run -t lib/prod_application.dart
+```
+
+### Type-Safe Internationalization
+Enhanced localization system with compile-time safety:
+
+- **Generated Keys**: `LocaleKeys.home_title.tr()` instead of string literals
+- **IDE Support**: Full autocomplete and refactoring support
+- **Compile-time Safety**: Catch missing translations at build time
+- **Nested Structure**: Organized translation keys (e.g., `form.validation.required`)
+
+#### Usage Example
+```dart
+// Type-safe translation keys
+Text(LocaleKeys.home_welcome.tr())
+Text(LocaleKeys.form_validation_required.tr())
+
+// Instead of error-prone strings
+Text('home.welcome'.tr()) // ❌ No compile-time checking
+```
+
+### Type-Safe Navigation
+Enum-based route definitions eliminate routing errors:
+
+```dart
+// Type-safe navigation
+context.go(RouteNames.details.path)
+context.go(RouteNames.apiDemo.path)
+
+// Instead of string literals  
+context.go('/details') // ❌ Typo-prone
+```
+
+### Enhanced Architecture
+- **Flavor Configuration**: Centralized app configuration per environment
+- **Generated Constants**: Auto-generated localization keys
+- **Improved Structure**: Better separation of concerns with app-level constants
 
 ## 🛠 Setup and Installation
 
@@ -493,6 +560,60 @@ flutter build web --release
 - **Let hooks handle quality**: Pre-commit hooks automatically format and fix issues
 - **Maintain code quality**: Hooks ensure 100% lint compliance
 
+### Development Workflow with New Features
+
+#### Working with Flavors
+```bash
+# Start development with debug features
+flutter run -t lib/dev_application.dart
+
+# Test staging configuration
+flutter run -t lib/staging_application.dart --release
+
+# Build for production
+flutter build apk -t lib/prod_application.dart --release
+```
+
+#### Adding New Translations
+1. **Add translations to JSON files**:
+   ```json
+   // assets/translations/en.json
+   {
+     "new_feature": {
+       "title": "New Feature",
+       "description": "This is a new feature"
+     }
+   }
+   ```
+
+2. **Generate LocaleKeys**:
+   ```bash
+   flutter packages pub run easy_localization:generate -S assets/translations -O lib/app/core/constants/lang
+   ```
+
+3. **Use type-safe keys**:
+   ```dart
+   Text(LocaleKeys.new_feature_title.tr())
+   ```
+
+#### Adding New Routes
+1. **Define route in enum**:
+   ```dart
+   // lib/config/routing/routes_name.dart
+   enum RouteNames {
+     home('/'),
+     newFeature('/new-feature'); // Add new route
+   
+     const RouteNames(this.path);
+     final String path;
+   }
+   ```
+
+2. **Use type-safe navigation**:
+   ```dart
+   context.go(RouteNames.newFeature.path)
+   ```
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -535,8 +656,21 @@ cd ../../..
 
 **Translation Issues**
 ```bash
-# Regenerate translation files
-flutter packages pub run easy_localization:generate -S assets/translations
+# Regenerate LocaleKeys (type-safe translation keys)
+flutter packages pub run easy_localization:generate -S assets/translations -O lib/app/core/constants/lang
+
+# Clean and regenerate if keys are missing
+rm lib/app/core/constants/lang/locale_keys.g.dart
+flutter packages pub run easy_localization:generate -S assets/translations -O lib/app/core/constants/lang
+```
+
+**Flavor Configuration Issues**
+```bash
+# Run with specific flavor if main.dart doesn't work
+flutter run -t lib/dev_application.dart
+
+# Check flavor configuration
+flutter run -t lib/dev_application.dart --verbose
 ```
 
 ## 📚 Additional Resources
