@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/app/core/constants/lang/locale_keys.g.dart';
+import 'package:flutter_boilerplate/config/routing/routes_name.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../core/themes/theme_provider.dart';
 import '../../core/widgets/language_selector.dart';
 
@@ -25,7 +28,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('home.title'.tr()),
+        title: Text(LocaleKeys.home_title.tr()),
         actions: [
           const LanguageSelector(),
           IconButton(
@@ -54,7 +57,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'home.welcome'.tr(),
+                LocaleKeys.home_welcome.tr(),
                 style: TextStyle(fontSize: 24.sp),
                 textAlign: TextAlign.center,
               ),
@@ -63,9 +66,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                 width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
-                  onPressed: () => context.go('/details'),
+                  onPressed: () => context.go(RouteNames.details.path),
                   child: Text(
-                    'home.go_to_details'.tr(),
+                    LocaleKeys.home_go_to_details.tr(),
                     style: TextStyle(fontSize: 16.sp),
                   ),
                 ),
@@ -75,9 +78,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                 width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
-                  onPressed: () => context.go('/form'),
+                  onPressed: () => context.go(RouteNames.form.path),
                   child: Text(
-                    'home.go_to_form'.tr(),
+                    LocaleKeys.home_go_to_form.tr(),
                     style: TextStyle(fontSize: 16.sp),
                   ),
                 ),
@@ -87,9 +90,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                 width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
-                  onPressed: () => context.go('/api-demo'),
+                  onPressed: () => context.go(RouteNames.apiDemo.path),
                   child: Text(
                     'API Demo',
+
+                    ///todo: add localizations
                     style: TextStyle(fontSize: 16.sp),
                   ),
                 ),

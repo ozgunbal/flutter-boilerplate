@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'config/routing/app_router.dart';
 import 'ui/core/themes/app_theme.dart';
 import 'ui/core/themes/theme_provider.dart';
 
-void main() async {
+void mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
@@ -22,14 +23,14 @@ void main() async {
         fallbackLocale: const Locale('en'),
         useOnlyLangCode: true,
         useFallbackTranslations: true,
-        child: const MyApp(),
+        child: const Application(),
       ),
     ),
   );
 }
 
-class MyApp extends ConsumerWidget {
-  const MyApp({super.key});
+class Application extends ConsumerWidget {
+  const Application({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
